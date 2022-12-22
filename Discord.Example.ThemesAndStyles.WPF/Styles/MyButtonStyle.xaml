@@ -1,0 +1,91 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:properties="clr-namespace:Discord.Example.ThemesAndStyles.WPF.Properties">
+
+    <Style TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border 
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        Background="{TemplateBinding Background}"
+                        Padding="{TemplateBinding Padding}">
+                        <ContentPresenter 
+                            Content="{TemplateBinding Content}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="BorderThickness" Value="1"/>
+
+        <Style.Triggers>
+
+            <!--LightMode Default-->
+            <DataTrigger Binding="{Binding Path=Theme, Source={x:Static properties:Settings.Default}}" Value="light">
+                <Setter Property="Background" Value="{StaticResource Light_Background_Normal}"/>
+                <Setter Property="Foreground" Value="{StaticResource Light_Foreground_Normal}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource Light_Border_Brush}"/>
+            </DataTrigger>
+
+            <!--LightMode MouseOver-->
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=Self}}" Value="true"/>
+                    <Condition Binding="{Binding Path=Theme, Source={x:Static properties:Settings.Default}}" Value="light"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Background" Value="{StaticResource Light_Background_MouseOver}"/>
+                    <Setter Property="Foreground" Value="{StaticResource Light_Foreground_MouseOver}"/>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+
+            <!--LightMode Pressed-->
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource Mode=Self}}" Value="true"/>
+                    <Condition Binding="{Binding Path=Theme, Source={x:Static properties:Settings.Default}}" Value="light"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Background" Value="{StaticResource Light_Background_Pressed}"/>
+                    <Setter Property="Foreground" Value="{StaticResource Light_Foreground_Pressed}"/>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+
+            <!--DarkMode Default-->
+            <DataTrigger Binding="{Binding Path=Theme, Source={x:Static properties:Settings.Default}}" Value="dark">
+                <Setter Property="Background" Value="{StaticResource Dark_Background_Normal}"/>
+                <Setter Property="Foreground" Value="{StaticResource Dark_Foreground_Normal}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource Dark_Border_Brush}"/>
+            </DataTrigger>
+
+            <!--DarkMode MouseOver-->
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Mode=Self}}" Value="true"/>
+                    <Condition Binding="{Binding Path=Theme, Source={x:Static properties:Settings.Default}}" Value="dark"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Background" Value="{StaticResource Dark_Background_MouseOver}"/>
+                    <Setter Property="Foreground" Value="{StaticResource Dark_Foreground_MouseOver}"/>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+
+            <!--DarkMode Pressed-->
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=IsPressed, RelativeSource={RelativeSource Mode=Self}}" Value="true"/>
+                    <Condition Binding="{Binding Path=Theme, Source={x:Static properties:Settings.Default}}" Value="dark"/>
+                </MultiDataTrigger.Conditions>
+                <MultiDataTrigger.Setters>
+                    <Setter Property="Background" Value="{StaticResource Dark_Background_Pressed}"/>
+                    <Setter Property="Foreground" Value="{StaticResource Dark_Foreground_Pressed}"/>
+                </MultiDataTrigger.Setters>
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>
